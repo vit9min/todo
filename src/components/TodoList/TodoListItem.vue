@@ -53,7 +53,7 @@ export default {
   display: flex
   align-items: flex-start
   .fa-square-check, .fa-square
-      color: $text-color
+    color: $text-color
   &__checkbox, &__delete
     margin-top: 4px
     cursor: pointer
@@ -71,8 +71,6 @@ export default {
   &__delete
     opacity: 0
     margin-left: 10px
-
-
 
   .todo-item__content, .todo-item__delete
     &:hover, &:focus

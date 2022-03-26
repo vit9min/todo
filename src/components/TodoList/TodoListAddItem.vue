@@ -21,10 +21,10 @@ export default {
   display: flex
   align-items: center
   &__plus
-      color: $text-color
-      cursor: pointer
-      width: 16px
-      height: 16px
+    color: $text-color
+    cursor: pointer
+    width: 16px
+    height: 16px
   &__content
     margin-left: 10px
     font: $base-font
