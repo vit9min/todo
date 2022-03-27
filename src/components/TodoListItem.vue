@@ -45,8 +45,7 @@ export default {
     margin-top: 4px
     cursor: pointer
   &__task
-    font: $base-font
-    color: $text-color
+    font: $font-base
     outline: 0
     width: calc(100% - 45px)
     margin-left: 10px

@@ -4,43 +4,46 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default createStore({
   state: {
-    all: []
+    all: [],
+    trash: []
   },
   getters: {
-    active(state) {
+    getAllActive(state) {
       return state.all.filter((task) => task.completed === false);
     },
-    completed(state) {
+    getAllCompleted(state) {
       return state.all.filter((task) => task.completed === true);
-    }
+    },
+    getAllRemoved: (state) => state.trash
   },
   mutations: {
-    ADD_TODO(state, content) {
+    TODO_ADD(state, task) {
       console.log('ADD_TODO');
       state.all.push({
         id: uuidv4(),
-        content: content,
+        task: task,
         isCompleted: false
       });
     },
-    EDIT_TODO_CONTENT(state, payload) {
-      console.log('EDIT_TODO_CONTENT');
+    TODO_UPDATE_TASK(state, payload) {
+      console.log('TODO_UPDATE_TASK');
       const todoId = payload[0];
-      const content = payload[1];
+      const task = payload[1];
       const selectedTodo = state.all.filter((task) => task.id === todoId);
-      selectedTodo[0].content = content;
+      selectedTodo[0].task = task;
     },
-    TOGGLE_COMPLETE_STATUS(state, todoId) {
-      console.log('TOGGLE_COMPLETE_STATUS');
+    TODO_TOGGLE_STATUS(state, todoId) {
+      console.log('TODO_TOGGLE_STATUS');
       const selectedTodo = state.all.find((task) => task.id === todoId);
       selectedTodo.completed = !selectedTodo.completed;
     },
-    DELETE_TODO(state, todoId) {
-      console.log('DELETE_TODO');
+    TODO_REMOVE(state, todoId) {
+      console.log('TODO_REMOVE');
+      state.trash.push(state.all.find((task) => task.id === todoId));
       state.all = state.all.filter((task) => task.id !== todoId);
     },
-    DELETE_ALL_COMPLETED(state) {
-      console.log('DELETE_ALL_COMPLETED');
+    TODO_REMOVE_ALL(state) {
+      console.log('TODO_REMOVE_ALL');
       state.all = state.all.filter((task) => task.completed === false);
     }
   },

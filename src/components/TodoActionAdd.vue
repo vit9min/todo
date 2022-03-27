@@ -19,14 +19,12 @@ export default {
   display: flex
   align-items: center
   &__icon-plus
-    color: $text-color
     cursor: pointer
     width: 16px
     height: 16px
   &__content
     margin-left: 10px
-    font: $base-font
-    color: $text-color
+    font: $font-base
     user-select: none
     cursor: pointer
 </style>

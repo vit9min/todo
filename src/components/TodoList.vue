@@ -75,11 +75,3 @@ export default {
   }
 };
 </script>
-<style lang="sass">
-.todo-list
-  padding-left: 15px
-  padding-right: 15px
-  padding-top: 10px
-  user-select: none
-  border-top: 1px solid $dark
-</style>

@@ -1,8 +1,35 @@
-
 body
     margin: 0
     padding: 0
+    /* dev styles */
+    display: flex
+    justify-content: center
+    background: rgba(0, 0, 0, 0.3)
+main
+    padding-left: 15px
+    padding-right: 15px
+    padding-top: 10px
+    padding-bottom: 10px
+.icon
+    width: 16px
+    height: 16px
+    cursor: pointer
+    &:hover
+        transition: ease all 0.3s
 
-.fade
-    transition: easy all 0.3s
-    opacity: 0
+.router-link
+    appearance: none
+    text-decoration: none
+    user-select: none
+    color: $color-text-alt
+    &-active
+        color: $color-text
+        position: relative
+    &-active::before
+        content: ""
+        background: $color-element
+        height: 2px
+        width: calc( 100% + 20px )
+        position: absolute
+        top: -12px
+        left: -10px

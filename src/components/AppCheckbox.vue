@@ -1,11 +1,9 @@
 <template>
   <app-input
     type="checkbox"
-    class="c-checkbox"
+    class="app-checkbox"
     v-model:modelChecked="check"
-  >
-    <div :icon="check ? ['fas', 'square-check'] : ['far', 'square']" />
-  </app-input>
+  />
 </template>
 
 <script>
@@ -29,23 +27,8 @@ export default {
 </script>
 
 <style lang="sass">
-.c-checkbox
+.app-checkbox
   position: relative
   width: 16px
   height: 16px
-  &:hover
-   svg
-     transition: ease all 0.3s
-     color: $color-on-light
-  input
-    margin: 0
-    appearance: none
-    cursor: pointer
-    z-index: 1
-  input, label, svg
-    position: absolute
-    left: 0
-    top: 0
-    width: 100%
-    height: 100%
 </style>

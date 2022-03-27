@@ -1,3 +1,5 @@
 {
-  "message": "hello i18n !!"
+  "Active": "Active",
+  "Completed": "Completed",
+  "Removed": "Removed"
 }

@@ -6,6 +6,21 @@ const routes = [
     path: '/',
     name: 'Active',
     component: ActiveView
+  },
+  {
+    path: '/completed',
+    name: 'Completed',
+    component: () => import('@/views/CompletedView.vue')
+  },
+  {
+    path: '/removed',
+    name: 'Removed',
+    component: () => import('@/views/RemovedView.vue')
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: () => import('@/views/SettingsView.vue')
   }
 ];
 
