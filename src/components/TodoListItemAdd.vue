@@ -1,17 +1,22 @@
 <template>
   <div class="add-todo-item">
-    <font-awesome-icon
+    <div
       icon="plus"
       class="add-todo-item__plus"
     />
-    <div class="add-todo-item__content">Add item</div>
+    <div class="add-todo-item__content">
+      Add item
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'TodoListAddItem',
-  components: {}
+  name: 'TodoListItemAdd',
+  components: {},
+  mounted() {
+    console.log('TodoListItemAdd');
+  }
 };
 </script>
 

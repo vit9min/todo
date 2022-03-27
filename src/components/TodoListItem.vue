@@ -1,6 +1,6 @@
 <template>
   <div :class="['todo-item', { 'todo-item--completed': todoCompleted }]">
-    <c-checkbox
+    <app-checkbox
       @change="toggleTodoStatus(propId), (completed = !completed)"
       :prop-check="!completed"
       class="todo-item__checkbox"
@@ -16,7 +16,7 @@
     >
       {{ todoContent }}
     </span>
-    <font-awesome-icon
+    <div
       @click="deleteTodo(propId)"
       class="todo-item__delete"
       icon="xmark"
@@ -25,12 +25,12 @@
   </div>
 </template>
 <script>
-import CCheckbox from '@/components/UI/CCheckbox.vue';
+import AppCheckbox from '@/components/AppCheckbox.vue';
 
 export default {
   name: 'TodoListItem',
   components: {
-    CCheckbox
+    AppCheckbox
   },
   props: {
     propId: { type: String, default: '' },

@@ -8,7 +8,7 @@
         {{ type.toUpperCase() }}
       </div>
       <div class="c-title__icons">
-        <font-awesome-icon
+        <div
           class="c-title__trash"
           icon="trash"
           @click="changeType"
@@ -27,19 +27,19 @@
       :edit-todo="editTodo"
       :toggle-todo-status="toggleTodoStatus"
     />
-    <todo-list-add-item
+    <todo-list-item-add
       @click="addTodo"
       v-if="withAdd & (type == 'active')"
     />
   </div>
 </template>
 <script>
-import TodoListItem from '@/components/TodoList/TodoListItem.vue';
-import TodoListAddItem from '@/components/TodoList/TodoListAddItem.vue';
+import TodoListItem from '@/components/TodoListItem.vue';
+import TodoListItemAdd from '@/components/TodoListItemAdd.vue';
 
 export default {
   name: 'TodoList',
-  components: { TodoListItem, TodoListAddItem },
+  components: { TodoListItem, TodoListItemAdd },
   props: {
     withAdd: {
       type: Boolean,
@@ -118,21 +118,21 @@ export default {
   user-select: none
   border-top: 1px solid $dark
 
-.c-title
-  margin-bottom: 5px
-  display: flex
-  justify-content: space-between
+  .c-title
+    margin-bottom: 5px
+    display: flex
+    justify-content: space-between
 
-  &__fill
-    font: $base-font
-    color: $text-color
-    cursor: pointer
+    &__fill
+      font: $base-font
+      color: $text-color
+      cursor: pointer
 
-  &__icons
-    color: $text-color
-    cursor: pointer
+    &__icons
+      color: $text-color
+      cursor: pointer
 
-    &:hover
-      transition: all ease 0.3s
-      color: $color-on-light
+      &:hover
+        transition: all ease 0.3s
+        color: $color-on-light
 </style>

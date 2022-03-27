@@ -1,11 +1,13 @@
 <template #nav-bar>
   <nav class="nav-bar">
-    <div class="nav-bar__title">Future To-Do List</div>
+    <div class="nav-bar__title">
+      Future To-Do List
+    </div>
   </nav>
 </template>
 <script>
 export default {
-  name: 'BaseNavBar',
+  name: 'TheNavBar',
   components: {}
 };
 </script>

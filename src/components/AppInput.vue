@@ -11,13 +11,13 @@
       :placeholder="placeholder"
       @input="updateInput($event)"
       @change="updateChecked($event)"
-    />
+    >
   </div>
 </template>
 
 <script>
 export default {
-  name: 'BaseInput',
+  name: 'AppInput',
   props: {
     id: {
       type: String,

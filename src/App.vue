@@ -1,26 +1,18 @@
 <template>
-  <router-view />
+  <v-app>
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
+
 <script>
-import '@/sass/style.sass';
 
 export default {
-  components: {},
-  mounted() {
-    this.$router.push('/');
-  }
-};
+  name: 'App',
+
+  data: () => ({
+    //
+  }),
+}
 </script>
-
-<style lang="sass">
-body
-  margin: 0
-  padding: 0
-  display: flex
-  justify-content: center
-
-#app
-  width: 300px
-  min-height: 440px
-  resize: vertical
-</style>

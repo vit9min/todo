@@ -1,21 +1,19 @@
 <template>
-  <base-input
+  <app-input
     type="checkbox"
     class="c-checkbox"
     v-model:modelChecked="check"
   >
-    <font-awesome-icon
-      :icon="check ? ['fas', 'square-check'] : ['far', 'square']"
-    />
-  </base-input>
+    <div :icon="check ? ['fas', 'square-check'] : ['far', 'square']" />
+  </app-input>
 </template>
 
 <script>
-import BaseInput from '@/components/BaseInput.vue';
+import AppInput from '@/components/AppInput.vue';
 
 export default {
-  name: 'CCheckbox',
-  components: { BaseInput },
+  name: 'AppCheckbox',
+  components: { AppInput },
   props: {
     propCheck: {
       type: Boolean,
