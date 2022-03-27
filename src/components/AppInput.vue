@@ -1,44 +1,27 @@
 <template>
-  <div>
-    <label :for="id">
-      <slot />
-    </label>
-    <input
-      :id="id"
-      :type="type"
-      :value="modelValue"
-      :checked="modelChecked"
-      :placeholder="placeholder"
-      @input="updateInput($event)"
-      @change="updateChecked($event)"
-    >
-  </div>
+  <label :for="id">
+    <slot />
+  </label>
+  <input
+    :id="id"
+    :type="type"
+    :value="modelValue"
+    :checked="modelChecked"
+    :placeholder="placeholder"
+    @input="updateInput($event)"
+    @change="updateChecked($event)"
+  >
 </template>
 
 <script>
 export default {
   name: 'AppInput',
   props: {
-    id: {
-      type: String,
-      default: ''
-    },
-    type: {
-      type: String,
-      default: 'text'
-    },
-    placeholder: {
-      type: String,
-      default: ''
-    },
-    modelValue: {
-      type: String,
-      default: ''
-    },
-    modelChecked: {
-      type: Boolean,
-      default: false
-    }
+    id: { type: String, default: '' },
+    type: { type: String, default: 'text' },
+    placeholder: { type: String, default: '' },
+    modelValue: { type: String, default: '' },
+    modelChecked: { type: Boolean, default: false }
   },
   emits: ['update:modelValue', 'update:modelChecked'],
   methods: {

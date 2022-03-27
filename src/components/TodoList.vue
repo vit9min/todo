@@ -1,51 +1,25 @@
 <template>
   <div class="todo-list">
-    <div class="todo-list__title c-title">
-      <div
-        class="c-title__fill"
-        @click="changeType"
-      >
-        {{ type.toUpperCase() }}
-      </div>
-      <div class="c-title__icons">
-        <div
-          class="c-title__trash"
-          icon="trash"
-          @click="changeType"
-        />
-      </div>
-    </div>
     <todo-list-item
-      class="todo-list__item"
       v-for="todo in todos"
       :key="todo.id"
       :id="'todo-item-' + todo.id"
       :prop-id="todo.id"
-      :todo-content="todo.todoContent"
-      :todo-completed="todo.completed"
-      :delete-todo="deleteTodo"
-      :edit-todo="editTodo"
-      :toggle-todo-status="toggleTodoStatus"
-    />
-    <todo-list-item-add
-      @click="addTodo"
-      v-if="withAdd & (type == 'active')"
+      :todo-content="todo.content"
+      :todo-is-completed="todo.isCompleted"
+      :todo-delete="todoDelete"
+      :todo-edite="todoEdit"
+      :todo-toggle-status="todoToggleStatus"
     />
   </div>
 </template>
 <script>
 import TodoListItem from '@/components/TodoListItem.vue';
-import TodoListItemAdd from '@/components/TodoListItemAdd.vue';
 
 export default {
   name: 'TodoList',
-  components: { TodoListItem, TodoListItemAdd },
-  props: {
-    withAdd: {
-      type: Boolean,
-      default: false
-    }
-  },
+  components: { TodoListItem },
+  props: {},
   data() {
     return {
       todos: [],
@@ -56,7 +30,7 @@ export default {
     this.todos = this.$store.getters[this.type];
   },
   methods: {
-    addTodo() {
+    todoAdd() {
       console.log('addTodo()');
 
       this.$store.commit('ADD_TODO', '');
@@ -68,7 +42,7 @@ export default {
         target.focus();
       }, 100);
     },
-    editTodo(event, todoId) {
+    todoEdit(event, todoId) {
       console.log('editTodo()');
       const todoContent = event.target.innerText;
       if (!todoContent) {
@@ -77,7 +51,7 @@ export default {
         this.$store.commit('EDIT_TODO_CONTENT', [todoId, todoContent]);
       }
     },
-    deleteTodo(todoId) {
+    todoDelete(todoId) {
       console.log('deleteTodo()');
       this.fadeItem(todoId);
       setTimeout(() => {
@@ -85,7 +59,7 @@ export default {
         this.todos = this.$store.getters[this.type];
       }, 350);
     },
-    toggleTodoStatus(todoId) {
+    todoToggleStatus(todoId) {
       console.log('toggleTodoStatus()');
       this.fadeItem(todoId);
       setTimeout(() => {
@@ -97,15 +71,6 @@ export default {
       const target = document.querySelector('#todo-item-' + todoId);
       target.style.transition = 'ease all 0.3s';
       target.style.opacity = '0';
-    },
-    changeType() {
-      const types = ['active', 'completed'];
-      if (this.type == types[0]) {
-        this.type = types[1];
-      } else {
-        this.type = types[0];
-      }
-      this.todos = this.$store.getters[this.type];
     }
   }
 };
@@ -117,22 +82,4 @@ export default {
   padding-top: 10px
   user-select: none
   border-top: 1px solid $dark
-
-  .c-title
-    margin-bottom: 5px
-    display: flex
-    justify-content: space-between
-
-    &__fill
-      font: $base-font
-      color: $text-color
-      cursor: pointer
-
-    &__icons
-      color: $text-color
-      cursor: pointer
-
-      &:hover
-        transition: all ease 0.3s
-        color: $color-on-light
 </style>

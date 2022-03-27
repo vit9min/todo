@@ -15,20 +15,20 @@ export default createStore({
     }
   },
   mutations: {
-    ADD_TODO(state, todoContent) {
+    ADD_TODO(state, content) {
       console.log('ADD_TODO');
       state.all.push({
         id: uuidv4(),
-        todoContent: todoContent,
-        completed: false
+        content: content,
+        isCompleted: false
       });
     },
     EDIT_TODO_CONTENT(state, payload) {
       console.log('EDIT_TODO_CONTENT');
       const todoId = payload[0];
-      const todoContent = payload[1];
+      const content = payload[1];
       const selectedTodo = state.all.filter((task) => task.id === todoId);
-      selectedTodo[0].todoContent = todoContent;
+      selectedTodo[0].content = content;
     },
     TOGGLE_COMPLETE_STATUS(state, todoId) {
       console.log('TOGGLE_COMPLETE_STATUS');

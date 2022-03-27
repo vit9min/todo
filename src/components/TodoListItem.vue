@@ -1,26 +1,19 @@
 <template>
-  <div :class="['todo-item', { 'todo-item--completed': todoCompleted }]">
+  <div class="todo-item">
     <app-checkbox
-      @change="toggleTodoStatus(propId), (completed = !completed)"
-      :prop-check="!completed"
-      class="todo-item__checkbox"
+      @change="todoToggleStatus(todoId)"
+      class="todo-item__action todo-item__action--complete"
     />
     <span
-      :class="[
-        'todo-item__content',
-        { 'todo-item__content--completed': !completed }
-      ]"
       contenteditable="true"
-      :id="'span-' + propId"
-      @blur="editTodo($event, propId)"
+      class="todo-item__task"
+      @blur="todoEditTask($event, todoId)"
     >
-      {{ todoContent }}
+      {{ todoTask }}
     </span>
     <div
-      @click="deleteTodo(propId)"
-      class="todo-item__delete"
-      icon="xmark"
-      :id="'delete-' + propId"
+      @click="todoDelete(todoId)"
+      class="todo-item__action todo-item__action--delete"
     />
   </div>
 </template>
@@ -33,17 +26,12 @@ export default {
     AppCheckbox
   },
   props: {
-    propId: { type: String, default: '' },
-    todoContent: { type: String, default: '' },
-    todoCompleted: { type: Boolean, default: false },
-    toggleTodoStatus: { type: Function, default: () => {} },
-    deleteTodo: { type: Function, default: () => {} },
-    editTodo: { type: Function, default: () => {} }
-  },
-  data() {
-    return {
-      completed: !this.todoCompleted
-    };
+    todoId: { type: String, default: '' },
+    todoTask: { type: String, default: '' },
+    todoIsCompleted: { type: Boolean, default: false },
+    todoToggleStatus: { type: Function, default: () => {} },
+    todoDeleteItem: { type: Function, default: () => {} },
+    todoEditTask: { type: Function, default: () => {} }
   }
 };
 </script>
@@ -52,35 +40,18 @@ export default {
   min-height: 25px
   display: flex
   align-items: flex-start
-  .fa-square-check, .fa-square
-    color: $text-color
-  &__checkbox, &__delete
+
+  &__action
     margin-top: 4px
     cursor: pointer
-  &__content
+  &__task
+    font: $base-font
+    color: $text-color
     outline: 0
     width: calc(100% - 45px)
     margin-left: 10px
-    font: $base-font
-    color: $text-color
     cursor: text
-    &--completed
-      transition: ease all 0.3s
-      opacity: 0.7
-      text-decoration: line-through
-  &__delete
-    opacity: 0
-    margin-left: 10px
 
-  .todo-item__content, .todo-item__delete
-    &:hover, &:focus
-      transition: all ease 0.3s
-      color: $color-on-light
-  &:hover &__delete
-    transition: all ease 0.3s
-    opacity: 1
-  .todo-item__content
-    &:focus + .todo-item__delete
-      transition: all ease 0.3s
-      opacity: 1
+  &__delete
+    margin-left: 10px
 </style>
