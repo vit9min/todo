@@ -1,0 +1,24 @@
+<template>
+  <svg
+    viewBox="0 0 512 512"
+    class="icon"
+  >
+    <g>
+      <circle
+        cx="458.667"
+        cy="256"
+        r="53.333"
+      />
+      <circle
+        cx="256"
+        cy="256"
+        r="53.333"
+      />
+      <circle
+        cx="53.333"
+        cy="256"
+        r="53.333"
+      />
+    </g>
+  </svg>
+</template>

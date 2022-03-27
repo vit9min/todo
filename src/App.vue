@@ -9,6 +9,7 @@
 <script>
 import TheHeader from './components/TheHeader.vue';
 import TheFooter from './components/TheFooter.vue';
+
 export default {
   components: { TheFooter, TheHeader },
   name: 'App',
@@ -20,7 +21,7 @@ export default {
 <style lang="sass">
 #app
   width: 400px
-  height: 450px
+  height: 470px
   overflow: hidden
   display: flex
   background: $color-background

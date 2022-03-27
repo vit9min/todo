@@ -5,34 +5,28 @@
       :key="todo.id"
       :id="'todo-item-' + todo.id"
       :prop-id="todo.id"
-      :todo-content="todo.content"
+      :todo-task="todo.task"
       :todo-is-completed="todo.isCompleted"
-      :todo-delete="todoDelete"
-      :todo-edite="todoEdit"
-      :todo-toggle-status="todoToggleStatus"
+      @check-item="todoToggleStatus(todo.id)"
     />
   </div>
 </template>
+
 <script>
 import TodoListItem from '@/components/TodoListItem.vue';
 
 export default {
   name: 'TodoList',
   components: { TodoListItem },
-  props: {},
+  props: { type: { type: String, default: 'getAllActive' } },
   data() {
     return {
-      todos: [],
-      type: 'active'
+      todos: this.$store.getters[this.type]
     };
-  },
-  mounted() {
-    this.todos = this.$store.getters[this.type];
   },
   methods: {
     todoAdd() {
       console.log('addTodo()');
-
       this.$store.commit('ADD_TODO', '');
       this.todos = this.$store.getters[this.type];
 
@@ -63,7 +57,7 @@ export default {
       console.log('toggleTodoStatus()');
       this.fadeItem(todoId);
       setTimeout(() => {
-        this.$store.commit('TOGGLE_COMPLETE_STATUS', todoId);
+        this.$store.commit('TODO_TOGGLE_STATUS', todoId);
         this.todos = this.$store.getters[this.type];
       }, 350);
     },
@@ -75,3 +69,7 @@ export default {
   }
 };
 </script>
+<style lang="sass">
+.todo-list
+  margin-top: 10px
+</style>

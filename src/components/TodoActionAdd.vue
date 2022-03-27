@@ -1,30 +1,33 @@
 <template>
-  <div class="action-add">
-    <div class="action-add__icon-plus" />
-    <div class="action-add__content">
-      Add item
+  <div class="action">
+    <icon-align-left class="action__icon" />
+    <div class="action__placeholder">
+      Add a task...
     </div>
   </div>
 </template>
 
 <script>
+import IconAlignLeft from '@/icons/IconAlignLeft.vue';
+
 export default {
-  name: 'TodoListActionAdd'
+  name: 'TodoListActionAdd',
+  components: { IconAlignLeft }
 };
 </script>
 
 <style lang="sass">
-.action-add
-  height: 24px
+.action
   display: flex
   align-items: center
-  &__icon-plus
-    cursor: pointer
-    width: 16px
-    height: 16px
-  &__content
-    margin-left: 10px
-    font: $font-base
-    user-select: none
-    cursor: pointer
+  height: 40px
+  border-radius: 3px
+  cursor: pointer
+  border: 1px solid $color-border
+  background-color: $color-background-alt
+  &__icon
+    padding: 10px
+    fill: $color-text-alt
+  &__placeholder
+    color: $color-text-alt
 </style>

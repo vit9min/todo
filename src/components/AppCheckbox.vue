@@ -1,34 +1,35 @@
 <template>
-  <app-input
-    type="checkbox"
-    class="app-checkbox"
-    v-model:modelChecked="check"
-  />
+  <div class="app-checkbox">
+    <icon-check
+      :class="[
+        'app-checkbox__toggle',
+        { 'app-checkbox__toggle--checked': isChecked }
+      ]"
+    />
+  </div>
 </template>
 
 <script>
-import AppInput from '@/components/AppInput.vue';
+import IconCheck from '@/icons/IconCheck.vue';
 
 export default {
   name: 'AppCheckbox',
-  components: { AppInput },
-  props: {
-    propCheck: {
-      type: Boolean,
-      default: false
-    }
-  },
-  data() {
-    return {
-      check: this.propCheck
-    };
-  }
+  components: { IconCheck },
+  props: { isChecked: { type: Boolean, default: false } }
 };
 </script>
 
 <style lang="sass">
 .app-checkbox
-  position: relative
   width: 16px
   height: 16px
+  &__toggle
+    border-radius: 3px
+    fill: transparent
+    border: 1px solid $color-border
+    width: 10px
+    height: 10px
+    padding: 2px
+    &--checked
+      fill: $color-text
 </style>

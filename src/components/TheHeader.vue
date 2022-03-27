@@ -3,8 +3,10 @@
     <the-clock />
   </div>
 </template>
+
 <script>
 import TheClock from '@/components/TheClock.vue';
+
 export default {
   name: 'TheHeader',
   components: { TheClock }
