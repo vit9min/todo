@@ -1,6 +1,6 @@
 <template>
-  <todo-action-add />
-  <todo-list />
+  <todo-action-add @action-add="todoActionAdd($event)" />
+  <todo-list type="getAllActive" />
 </template>
 
 <script>
@@ -13,6 +13,11 @@ export default {
   components: {
     TodoList,
     TodoActionAdd
+  },
+  methods: {
+    todoActionAdd(event) {
+      this.$store.commit('TODO_ADD', event.target.innerText);
+    }
   }
 };
 </script>

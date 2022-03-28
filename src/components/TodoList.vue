@@ -24,18 +24,17 @@ export default {
       todos: this.$store.getters[this.type]
     };
   },
-  methods: {
-    todoAdd() {
-      console.log('addTodo()');
-      this.$store.commit('ADD_TODO', '');
+  computed: {
+    getTodosCount() {
+      return this.$store.getters.getTodosCount;
+    }
+  },
+  watch: {
+    getTodosCount() {
       this.todos = this.$store.getters[this.type];
-
-      const todoId = this.todos[this.todos.length - 1].id;
-      setTimeout(() => {
-        const target = document.querySelector('#span-' + todoId);
-        target.focus();
-      }, 100);
-    },
+    }
+  },
+  methods: {
     todoEdit(event, todoId) {
       console.log('editTodo()');
       const todoContent = event.target.innerText;
@@ -50,7 +49,6 @@ export default {
       this.fadeItem(todoId);
       setTimeout(() => {
         this.$store.commit('DELETE_TODO', todoId);
-        this.todos = this.$store.getters[this.type];
       }, 350);
     },
     todoToggleStatus(todoId) {
@@ -58,18 +56,24 @@ export default {
       this.fadeItem(todoId);
       setTimeout(() => {
         this.$store.commit('TODO_TOGGLE_STATUS', todoId);
-        this.todos = this.$store.getters[this.type];
       }, 350);
     },
     fadeItem(todoId) {
       const target = document.querySelector('#todo-item-' + todoId);
       target.style.transition = 'ease all 0.3s';
       target.style.opacity = '0';
+      setTimeout(() => (target.style.display = 'none'), 350);
     }
   }
 };
 </script>
 <style lang="sass">
 .todo-list
+  height: calc(100% - 60px)
   margin-top: 10px
+  overflow-y: scroll
+  scrollbar-base-color: blue
+  scrollbar-face-color: yallow
+  &::-webkit-scrollbar
+    width: 0
 </style>
